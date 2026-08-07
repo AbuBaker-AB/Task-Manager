@@ -30,9 +30,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   void _submitTask() async {
     if (_formKey.currentState!.validate()) {
       Map<String, dynamic> requestBody = {
-        "title": _assignToController.text.trim(), // Or your separate title controller
+        "title": _assignToController.text.trim(),
         "description": _descriptionController.text.trim(),
-        "status": "New" // Default initial status
+        "status": "New"
       };
 
       final response = await ApiCaller.postRequest(
@@ -46,7 +46,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Task added successfully!'), backgroundColor: Colors.green),
         );
-        Navigator.pop(context, true); // Pop and return true to trigger a refresh on the home screen
+        Navigator.pop(context, true); 
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Failed to add task'), backgroundColor: Colors.red),
@@ -71,7 +71,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.xxl),
           child: Form(
-            key: _formKey, // Attach the form key
+            key: _formKey, 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -84,7 +84,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                 const SizedBox(height: AppSpacing.section),
 
-                // Assign To Field
+               
                 TextFormField(
                   controller: _assignToController,
                   decoration: _inputDecoration("Assign to"),
@@ -98,10 +98,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                 const SizedBox(height: AppSpacing.lg),
 
-                // Description Field (Multiline)
+               
                 TextFormField(
                   controller: _descriptionController,
-                  maxLines: 8, // Makes it a large text area
+                  maxLines: 8, 
                   decoration: _inputDecoration("Description"),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -113,17 +113,17 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                 const SizedBox(height: AppSpacing.section),
 
-                // Submit Button
+              
                 PrimaryButton(
                   onPressed: _submitTask,
-                  // Leaving text null shows the default arrow icon
+                  
                 ),
               ],
             ),
           ),
         ),
       ),
-      // Matches the bottom navigation layout shown in the mockup
+     
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         type: BottomNavigationBarType.fixed,
@@ -152,7 +152,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     );
   }
 
-  // Helper method to keep the input styling consistent with your app theme
+ 
   InputDecoration _inputDecoration(String hint) {
     return InputDecoration(
       hintText: hint,
