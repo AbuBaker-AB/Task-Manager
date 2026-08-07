@@ -16,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // Initializing controllers with mockup data
+
   final TextEditingController _emailController = TextEditingController(text: "john.doe@example.com");
   final TextEditingController _firstNameController = TextEditingController(text: "John");
   final TextEditingController _lastNameController = TextEditingController(text: "Doe");
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Avatar and Name Header
+           
               Row(
                 children: [
                   CircleAvatar(
@@ -83,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               const SizedBox(height: AppSpacing.section),
 
-              // Form Fields with Labels
+             
               _buildFieldLabel("Email"),
               AuthTextField(
                 controller: _emailController,
@@ -122,10 +122,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               const SizedBox(height: AppSpacing.section),
 
-              // Update Button
+           
               PrimaryButton(
                 onPressed: () {
-                  // TODO: Call API to update profile details
+                
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Profile Updated!')),
                   );
@@ -136,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3, // Highlights "Profile"
+        currentIndex: 3,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textHint,
@@ -177,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // Helper to build the small text labels above the fields
+
   Widget _buildFieldLabel(String label) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0, left: 4.0),
