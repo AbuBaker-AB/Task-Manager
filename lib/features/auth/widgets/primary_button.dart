@@ -1,64 +1,3 @@
-// import 'package:flutter/material.dart';
-// //
-// // import '../../../core/constants/app_assets.dart';
-// // import '../../../core/constants/app_colors.dart';
-// // import '../../../core/constants/app_radius.dart';
-// //
-// // class PrimaryButton extends StatelessWidget {
-// //   final VoidCallback onPressed;
-// //   final bool isLoading;
-// //
-// //   const PrimaryButton({
-// //     super.key,
-// //     required this.onPressed,
-// //     this.isLoading = false,
-// //   });
-// //
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return SizedBox(
-// //       width: double.infinity,
-// //       height: 42,
-// //       child: ElevatedButton(
-// //         onPressed: isLoading ? null : onPressed,
-// //         style: ElevatedButton.styleFrom(
-// //           backgroundColor: AppColors.primary,
-// //           elevation: 0,
-// //           shape: RoundedRectangleBorder(
-// //             borderRadius: BorderRadius.circular(
-// //               AppRadius.sm,
-// //             ),
-// //           ),
-// //         ),
-// //         child: isLoading
-// //             ? const SizedBox(
-// //           width: 20,
-// //           height: 20,
-// //           child: CircularProgressIndicator(
-// //             strokeWidth: 2,
-// //             color: Colors.white,
-// //           ),
-// //         )
-// //             : Container(
-// //           width: 26,
-// //           height: 26,
-// //           decoration: const BoxDecoration(
-// //             color: Colors.white,
-// //             shape: BoxShape.circle,
-// //           ),
-// //           child: Center(
-// //             child: Image.asset(
-// //               AppAssets.arrowRight,
-// //               width: 18,
-// //               height: 18,
-// //             ),
-// //           ),
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
-
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/app_colors.dart';
@@ -68,8 +7,8 @@ import '../../../core/constants/app_text_styles.dart';
 class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isLoading;
-  final String? text; // Added optional text parameter
-
+  final String? text; 
+  
   const PrimaryButton({
     super.key,
     required this.onPressed,
@@ -103,12 +42,11 @@ class PrimaryButton extends StatelessWidget {
           ),
         )
             : text != null
-        // If text is provided, show text
             ? Text(
           text!,
           style: AppTextStyles.button,
         )
-        // Otherwise, fall back to the default arrow icon
+     
             : const Icon(
           Icons.arrow_circle_right_outlined,
           color: Colors.white,
