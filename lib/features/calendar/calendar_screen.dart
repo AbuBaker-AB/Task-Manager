@@ -47,7 +47,7 @@ class CalendarScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2, // Highlights "Calendar"
+        currentIndex: 2, 
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textHint,
