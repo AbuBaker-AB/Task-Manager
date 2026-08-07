@@ -29,7 +29,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // Background Graphic - Locked to bottom right
           Positioned(
             right: -120,
             bottom: -120,
@@ -61,7 +60,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             ),
           ),
 
-          // Scrollable Foreground Content
           SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -71,7 +69,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   children: [
                     const SizedBox(height: 60),
 
-                    // Utilizing the subtitle property of AuthHeader
                     const AuthHeader(
                       title: "Your Email Address",
                       subtitle: "A 6-digit verification pin will send to your email address.",
@@ -99,7 +96,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       text: "Have account?",
                       actionText: "Sign in",
                       onTap: () {
-                        // Navigates back to the Login Screen
                         Navigator.pop(context);
                       },
                     ),
