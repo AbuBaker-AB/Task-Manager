@@ -1,115 +1,3 @@
-// import 'package:flutter/material.dart';
-//
-// import '../../../core/constants/app_spacing.dart';
-// import '../widgets/auth_header.dart';
-// import '../widgets/auth_text_field.dart';
-// import '../widgets/password_text_field.dart';
-// import '../widgets/primary_button.dart';
-//
-// class LoginScreen extends StatefulWidget {
-//   const LoginScreen({super.key});
-//
-//   @override
-//   State<LoginScreen> createState() => _LoginScreenState();
-// }
-//
-// class _LoginScreenState extends State<LoginScreen> {
-//
-//   final TextEditingController emailController =
-//   TextEditingController();
-//
-//   final TextEditingController passwordController =
-//   TextEditingController();
-//
-//   @override
-//   void dispose() {
-//     emailController.dispose();
-//     passwordController.dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: SingleChildScrollView(
-//           child: Padding(
-//             padding: const EdgeInsets.all(
-//               AppSpacing.xxl,
-//             ),
-//             child: Column(
-//               crossAxisAlignment:
-//               CrossAxisAlignment.start,
-//               children: [
-//
-//                 const SizedBox(height: 55),
-//
-//                 AuthHeader(
-//                   title: "Get Started With",
-//                 ),
-//
-//                 SizedBox(
-//                   height: AppSpacing.section,
-//                 ),
-//
-//                 AuthTextField(
-//                   controller: emailController,
-//                   hintText: "Email",
-//                   keyboardType: TextInputType.emailAddress,
-//                 ),
-//
-//                 const SizedBox(
-//                   height: AppSpacing.lg,
-//                 ),
-//
-//                 PasswordTextField(
-//                   controller: passwordController,
-//                 ),
-//
-//                 const SizedBox(
-//                   height: AppSpacing.section,
-//                 ),
-//
-//                 PrimaryButton(
-//                   onPressed: () {
-//                     // TODO:
-//                     // Login API
-//                   },
-//                 ),
-//
-//                 const SizedBox(
-//                   height: 12,
-//                 ),
-//
-//                 Center(
-//                   child: TextButton(
-//                     onPressed: () {
-//                       // TODO:
-//                       // Forgot Password Screen
-//                     },
-//                     child: const Text(
-//                       "Forgot Password?",
-//                       style: TextStyle(
-//                         fontSize: 12,
-//                         color: Colors.grey,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 const SizedBox(
-//                   height: AppSpacing.section,
-//                 ),
-//
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
 import '../../../api/api_caller.dart';
@@ -146,10 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // FIX: The Stack is now the root of the body, outside the SafeArea and ScrollView
       body: Stack(
         children: [
-          // Background Graphic - Locked to bottom right
           Positioned(
             right: -120,
             bottom: -120,
@@ -181,7 +67,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
 
-          // Scrollable Foreground Content
           SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -213,7 +98,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     PrimaryButton(
                       onPressed: () async {
-                        // 1. Validate fields are not empty
                         if (emailController.text.trim().isEmpty ||
                             passwordController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -222,30 +106,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           return;
                         }
 
-                        // 2. Prepare request body
                         Map<String, dynamic> requestBody = {
                           "email": emailController.text.trim(),
                           "password": passwordController.text,
                         };
 
-                        // 3. Show loading indicator (optional or handled via button state)
-
-                        // 4. Call API using your sir's ApiCaller and TMUrls
                         final response = await ApiCaller.postRequest(
                           URL: TMUrls.LoginURL,
                           body: requestBody,
                         );
 
                         if (response.isSuccess) {
-                          // 5. Extract token and user model from response data
                           String token = response.responseData['token'];
                           var userDataJson = response.responseData['data'];
                           UserModel userModel = UserModel.fromJson(userDataJson);
 
-                          // 6. Save using AuthController
                           await AuthController.saveUserData(userModel, token);
 
-                          // 7. Navigate to Dashboard
                           if (!context.mounted) return;
                           Navigator.pushNamedAndRemoveUntil(
                             context,
@@ -253,7 +130,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 (route) => false,
                           );
                         } else {
-                          // 8. Show error message from API
                           if (!context.mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -267,7 +143,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
 
-                    // FIX: Increased the height from 12 to 48 to match the target design
                     const SizedBox(height: 55),
 
                     Center(
@@ -279,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           "Forgot Password?",
                           style: TextStyle(
                             fontSize: 12,
-                            color: Colors.grey, // Keeps this specific text grey
+                            color: Colors.grey, 
                           ),
                         ),
                       ),
