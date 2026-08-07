@@ -31,7 +31,6 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // Background Graphic - Locked to bottom right
           Positioned(
             right: -120,
             bottom: -120,
@@ -57,7 +56,6 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
             ),
           ),
 
-          // Scrollable Foreground Content
           SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -103,7 +101,6 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                       text: "Have account?",
                       actionText: "Sign in",
                       onTap: () {
-                        // Navigate back to the Login Screen and clear the stack
                         Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
                       },
                     ),
