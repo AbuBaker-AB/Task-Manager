@@ -40,7 +40,6 @@ class _SignupScreenState extends State<SignupScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // Background Graphic - Locked to bottom right
           Positioned(
             right: -120,
             bottom: -120,
@@ -66,7 +65,6 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
 
-          // Scrollable Foreground Content
           SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -122,7 +120,6 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     PrimaryButton(
                       onPressed: () async {
-                        // 1. Validate that all fields are filled
                         if (emailController.text.trim().isEmpty ||
                             firstNameController.text.trim().isEmpty ||
                             lastNameController.text.trim().isEmpty ||
@@ -134,24 +131,22 @@ class _SignupScreenState extends State<SignupScreen> {
                           return;
                         }
 
-                        // 2. Prepare request body matching the sir's API expectation
                         Map<String, dynamic> requestBody = {
                           "email": emailController.text.trim(),
                           "firstName": firstNameController.text.trim(),
                           "lastName": lastNameController.text.trim(),
                           "mobile": mobileController.text.trim(),
                           "password": passwordController.text,
-                          "photo": "" // Optional or empty string if not used
+                          "photo": "" 
                         };
 
-                        // 3. Call API using ApiCaller and TMUrls
                         final response = await ApiCaller.postRequest(
                           URL: TMUrls.SignupURL,
                           body: requestBody,
                         );
 
                         if (response.isSuccess) {
-                          // 4. Show success message and navigate back to Login
+                          
                           if (!context.mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -165,7 +160,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 (route) => false,
                           );
                         } else {
-                          // 5. Show error message from API
+                         
                           if (!context.mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -185,7 +180,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       text: "Have account?",
                       actionText: "Sign in",
                       onTap: () {
-                        // Navigate back to the Login Screen
+                        
                         Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
                       },
                     ),
