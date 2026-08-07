@@ -15,7 +15,6 @@ class PinVerificationScreen extends StatefulWidget {
 }
 
 class _PinVerificationScreenState extends State<PinVerificationScreen> {
-  // Create controllers and focus nodes for 6 boxes
   final List<TextEditingController> _controllers = List.generate(6, (_) => TextEditingController());
   final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
 
@@ -77,7 +76,6 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
 
                     const SizedBox(height: AppSpacing.section),
 
-                    // The 6 OTP Input Boxes
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(6, (index) {
@@ -97,7 +95,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                     const SizedBox(height: AppSpacing.section),
 
                     PrimaryButton(
-                      text: "Verify", // Using the new text property
+                      text: "Verify", 
                       onPressed: () {
                         Navigator.pushNamed(context, '/set-password');
                       },
@@ -109,7 +107,6 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                       text: "Have account?",
                       actionText: "Sign in",
                       onTap: () {
-                        // Takes user back to the Login Screen
                         Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
                       },
                     ),
